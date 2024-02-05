@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,15 @@ Route::delete('/test', function () {
 
 //////////////////////////
 
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/login', [AuthController::class, 'login']);
+
+//Route::get('/me', [AuthController::class, 'me']);
+
+Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+/////////////////////////////
 
 Route::resource('/articulos', ArticuloController::class); 
 
